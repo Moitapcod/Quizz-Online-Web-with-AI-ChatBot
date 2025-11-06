@@ -11,8 +11,8 @@ export default {
             port: 587, 
             secure: false, 
             auth: {
-              user: 'nmcuongg2004@gmail.com', 
-              pass: 'xmfm pkrx upfk ipvy', 
+              user: process.env.EMAIL_USER, 
+              pass: process.env.EMAIL_PASSWORD, 
             },
             tls: {
                 rejectUnauthorized: false
@@ -21,8 +21,12 @@ export default {
         
         const verifyUrl = `${process.env.APP_URL}/auth/verify/${token}`;
         
+        console.log('📧 Sending verification email to:', email);
+        console.log('🔗 Verification URL:', verifyUrl);
+        console.log('📨 Using email:', process.env.EMAIL_USER);
+        
         const mailOptions = {
-            from: process.env.EMAIL_USER,
+            from: `"QuizzOnline" <${process.env.EMAIL_USER}>`,
             to: email,
             subject: 'Verify Your Quizz Account',
             html: `

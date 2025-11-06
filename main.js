@@ -36,6 +36,16 @@ import mobileApiRouter from "./routes/mobileApiRouter.js";
 
 // import halenTestRoute from "./routes/halenTestRoute.js";
 dotenv.config();
+
+// Debug: Kiểm tra biến môi trường
+console.log('🔧 Environment Variables Check:');
+console.log('   PORT:', process.env.PORT);
+console.log('   APP_URL:', process.env.APP_URL);
+console.log('   EMAIL_USER:', process.env.EMAIL_USER);
+console.log('   EMAIL_PASSWORD:', process.env.EMAIL_PASSWORD ? '***configured***' : '❌ NOT SET');
+console.log('   DB_NAME:', process.env.DB_NAME);
+console.log('-----------------------------------\n');
+
 const app = express();
 app.set("trust proxy", 1);
 app.use(flash());
