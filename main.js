@@ -1,4 +1,5 @@
 import express from "express";
+import chatbaseHashMiddleware from "./middlewares/chatbaseHashMiddleware.js";
 import passport from "passport";
 import session from "express-session";
 import mysqlSession from "express-mysql-session";
@@ -315,9 +316,11 @@ app.use(async function (req, res, next) {
   }
   res.locals.auth = req.session.auth;
   res.locals.authUser = req.session.authUser || null;
-
   next();
 });
+
+// Thêm middleware chatbaseHashMiddleware để truyền userId và hash cho layout
+app.use(chatbaseHashMiddleware);
 app.use((req, res, next) => {
   res.locals.showLoading = true;
   next();
